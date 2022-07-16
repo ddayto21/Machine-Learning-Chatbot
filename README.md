@@ -1,5 +1,5 @@
 ## DialogFlow - Node.JS Backend
-![chatbot](/dialogflow-chatbot/images)
+![chatbot](images/agent.jpg)
 
 **Table of Contents:**
 
