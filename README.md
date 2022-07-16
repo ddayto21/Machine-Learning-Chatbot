@@ -1,21 +1,43 @@
+# [Dialogflow - Fulfillment Service: Node.js Backend](https://dialogflow.cloud.google.com)
+
+**Table of Contents:**
+
+* [Quickstart](#quickstart)
+  * [Before you begin](#before-you-begin)
+  * [Installing the client library](#installing-the-client-library)
+  * [Using the client library](#using-the-client-library)
+* [Samples](#samples)
+* [Versioning](#versioning)
+* [Contributing](#contributing)
+* [License](#license)
+
+
+### Before you begin
+
+1.  [Select or create a Cloud Platform project][projects].
+1.  [Enable billing for your project][billing].
+1.  [Enable the Dialogflow API API][enable_api].
+1.  [Set up authentication with a service account][auth] so you can access the
+    API from your local workstation.
+
 ## BACKEND SERVICE 
 - URL: https://552d-2620-df-8000-5701-0-2-1d46-9f26.ngrok.io/webhook
 - This backend service receives POST requests from the client application in the form of the response to a user query matched by intents with webhook enabled. 
 - Ensure that your web service meets all the webhook requirements specific to the API version enabled in this agent. 
 
-# STEP 1: RUN SERVICE.JS ON LOCAL HOST
+## STEP 1: RUN SERVICE.JS ON LOCAL HOST
 >>> node service.js
 
-# STEP 2: USE NGROK TO CREATE A PUBLIC ENDPOINT
+### STEP 2: USE NGROK TO CREATE A PUBLIC ENDPOINT
 >>> ngrok http [port]
 
-# STEP 3: COPY THE ENDPOINT (FORWARDING LINK) FROM TERMINAL 
+## STEP 3: COPY THE ENDPOINT (FORWARDING LINK) FROM TERMINAL 
 - For this particular service, the public endpoint was: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io
 
-# STEP 4: ADD '/webhook' TO END OF YOUR PUBLIC ENDPOINT
+## STEP 4: ADD '/webhook' TO END OF YOUR PUBLIC ENDPOINT
 - Example: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io/webhook
 
-# STEP 5: ADD YOUR PUBLIC ENDPOINT TO DIALOGFLOW CHATBOT
+## STEP 5: ADD YOUR PUBLIC ENDPOINT TO DIALOGFLOW CHATBOT
 - Navigate to https://dialogflow.cloud.google.com
 - On the left side of the page, click the 'Fulfillment' tab
 - In the 'Webhook' section, click 'Enable'
@@ -23,7 +45,7 @@
 - Click 'Save' at the bottom of the page
   - You can define when you want to send webhooks to this public endpoint in the DialogFlow console
 
-### Create a Dialogflow Client
+## Create a Dialogflow Client
 - const dialogflow = require('dialogflow');
 - const sessionClient = new dialogflow.SessionsClient({
   projectId,
