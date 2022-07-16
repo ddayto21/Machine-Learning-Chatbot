@@ -91,7 +91,9 @@ Define Project ID and Session ID in Application
 ```
 
 
-## Set Up Redis Server - Node.JS
+## Session Management - Redis  
+
+### Redis Server Installation
 https://docs.redis.com/latest/rs/references/client_references/client_nodejs/
 
 - To use Redis with Node.js, you need to install a Node.js Redis client. The following sections explain how to use node_redis, a community-recommended Redis client for Node.js.
@@ -188,4 +190,73 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
     });
 
 ```
+
+## Creating Appointments 
+
+### Using Google Maps API to calculate the distance between two points 
+- This feature maps the distance between a customer pickup location and a corporate business address in order to check whether the pickup distance falls within the range of 100 miles
+
+```javascript
+if (context_name == session_path + '/contexts/' + 'appointment-booking-create') {
+                console.log("Calculating distance of the destination from driver location...")
+                var API_KEY = process.env.DIRECTIONS_API_KEY;
+                var axios = require('axios')
+                var config = {
+                method: 'get',
+                url: `https://maps.googleapis.com/maps/api/directions/json?origin=${Origin}&destination=${Destination}&key=${API_KEY}`
+                }
+               axios(config).then(async function(res) {
+                data = res.data
+               
+                distance = data["routes"][0]["legs"][0]["distance"]["text"]
+                kilometers = data["routes"][0]["legs"][0]["distance"]["value"]
+                console.log(`The distance between origin and destination is: ${distance}`)
+                
+                        if (kilometers < 160394) {
+                            console.log("The destination is within range!")
+                            var jsonResponse  = {
+                                "fulfillmentText" : `Perfect! I just looked up the address, it's only ${distance} away, which meets the fundraiser requirements. How many bags do you plan on selling?`
+                            }
+                            console.log("Attempting to store DestinationAddress in memory...")
+                            redis_client.set("DestinationAddress", Destination, function(err, response) {
+                                if(err) {
+                                    console.log(err)
+                                }
+                               
+                            })
+                            console.log("Saved destination address to session cache...")
+                            const hashMap = {
+                                "DestinationAddress": Destination 
+                            }
+                            try {
+                                const client = new Redis()
+                                await client.hmset(session_id, hashMap)
+                                const sessData = await client.hgetall(session_id) 
+                                console.log(sessData)
+                            } catch(err) {
+                                console.log(err)
+                            }
+                        
+                        }
+                        else {
+                            console.log("The destination is out of range")
+                        
+                            var jsonResponse = {
+                                "fulfillmentText" : "I'm so sorry, I just looked up the address on the map. It looks like that address is out of driving range, we're only allowed to book appointments that are within 100 miles of the corporate office. Would you prefer to book the appointment at a different location?"
+                            }
+                            console.log("Sent response from server to customer...")
+                            
+                        }
+                        response.send(jsonResponse)
+                
+                    }).catch(function(error) {
+                        console.log(error)
+                    })
+                }
+
+```
+
+
+
+
   
