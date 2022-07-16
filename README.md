@@ -1,5 +1,4 @@
-DialogFlow Fulfillment Webhook - Node.JS Backend
-=================================================
+## DialogFlow - Node.JS Backend
 
 **Table of Contents:**
 
@@ -22,22 +21,37 @@ DialogFlow Fulfillment Webhook - Node.JS Backend
 - Ensure that your web service meets all the webhook requirements specific to the API version enabled in this agent. 
 
 ### Run Backend Application on Local Host
+
 ```
+
 $ node service.js
 
 ```
 
+### Use ngrok to set up a public endpoint
 
-### STEP 2: USE NGROK TO CREATE A PUBLIC ENDPOINT
->>> ngrok http [port]
+```
 
-## STEP 3: COPY THE ENDPOINT (FORWARDING LINK) FROM TERMINAL 
+$ ngrok http <port>
+
+```
+ 
+## Copy forwarding link from ngrok 
+
 - For this particular service, the public endpoint was: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io
 
-## STEP 4: ADD '/webhook' TO END OF YOUR PUBLIC ENDPOINT
+## Add '/webhook' to the end of your public endpoint
+
+```javascript
+
+app.post('/webhook', async(request, response) => {
+
+```
+
 - Example: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io/webhook
 
-## STEP 5: ADD YOUR PUBLIC ENDPOINT TO DIALOGFLOW CHATBOT
+## Set up Webhook URL in Dialogflow Agent
+
 - Navigate to https://dialogflow.cloud.google.com
 - On the left side of the page, click the 'Fulfillment' tab
 - In the 'Webhook' section, click 'Enable'
@@ -46,36 +60,58 @@ $ node service.js
   - You can define when you want to send webhooks to this public endpoint in the DialogFlow console
 
 ## Create a Dialogflow Client
-```javascript const dialogflow = require('dialogflow');
+
+```javascript 
+
+const dialogflow = require('dialogflow');
  const sessionClient = new dialogflow.SessionsClient({
   projectId,
   credentials,
 });
+
 ```
 
 ## Project ID
-- You can find your project ID in your Dialogflow agent settings
+
+Define Project ID and Session ID in Application 
+
+- You can find your project ID in your Dialogflow Agent Settings
+
 ```javascript
+
 const projectId = '<project-id-here>';
 const sessionId = '<put-chat-session-id-here>';
+
 ```
 
 
-## REDIS CACHE (Node.JS)
+## Set Up Redis Server - Node.JS
 https://docs.redis.com/latest/rs/references/client_references/client_nodejs/
+
 - To use Redis with Node.js, you need to install a Node.js Redis client. The following sections explain how to use node_redis, a community-recommended Redis client for Node.js.
+
 - Another community-recommended client for Node.js developers is ioredis. You can find additional Node.js clients for Redis in the Node.js section of the Redis Clients page.
 
 ### Install node_redis 
->>> npm install node_redis
-
-### Connect to Redis Instance
-- The following code creates a connection to Redis:
-```javascript
-const redis = require('redis');
 ```
 
-# Step 3: Create a new Redis Client
+$ npm install node_redis
+
+```
+
+## Connect to Redis Instance
+- The following code creates a connection to Redis:
+
+```javascript
+
+const redis = require('redis');
+
+```
+
+## Create a new Redis Client
+
+```javascript
+
 const client = redis.createClient({
     socket: {
         host: '<hostname>',
@@ -87,10 +123,12 @@ const client = redis.createClient({
 client.on('error', err => {
     console.log('Error ' + err);
 });
+
+
 ```
 https://www.sitepoint.com/using-redis-node-js/
 
-# Step 4: Install Redis Server:
+## Install Redis Server:
 - For Mac and Linux users, the Redis installation is pretty straightforward. Open your terminal and type the following commands:
 >>> wget https://download.redis.io/releases/redis-6.2.4.tar.gz
 >>> tar xzf redis-6.2.4.tar.gz
