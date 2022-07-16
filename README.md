@@ -149,23 +149,26 @@ $ src/redis-server
 ## Service Account Authentication
 First you have to create a service account and download a .JSON format file of credentials on your local system. Now, there are three ways to use that credentials for authentication/authorisation in dialogflow library.
 
-    Method 1
+### Method 1
+- Create a environment variable GOOGLE_APPLICATION_CREDENTIALS and it's value should be the absolute path of that JSON credentials file.
+- By this method, google library will implicitly loads the file and use that credentials for authentication. We don't need to do anything inside our code relating to this credentials file.
 
-    Create a environment variable GOOGLE_APPLICATION_CREDENTIALS and it's value should be the absolute path of that JSON credentials file.By this method, google library will implicitly loads the file and use that credentials for authentication. We don't need to do anything inside our code relating to this credentials file.
+# For UNIX/LINUX Operating Systems:
 
-    export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>" # for UNIX,LINUX
-    # then run your code, google library will pick credentials file and loads it automatically
+```
+$ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
+```
 
-    Method 2
+- Then, run your code. Google library will automatically load your credentials file 
 
-    Assume, you know the absolute path of your JSON file and put that as value in below snippet of credentials_file_path variable.
+### Method 2
+- Assume that you know the absolute path of your JSON file and put that as value in below snippet of credentials_file_path variable.
+-  You can find your project ID in your Dialogflow agent settings
 
-    // You can find your project ID in your Dialogflow agent settings
+```javascript
+
     const projectId = '<project-id-here>';
     const sessionId = '<put-chat-session-id-here>'; 
-    // const sessionid = 'fa2d5904-a751-40e0-a878-d622fa8d65d9'
-    const query = 'hi';
-    const languageCode = 'en-US';
     const credentials_file_path = '<absolute-file-path-of-JSON-file>';
 
     // Instantiate a DialogFlow client.
@@ -176,9 +179,5 @@ First you have to create a service account and download a .JSON format file of c
       keyFilename: credentials_file_path,
     });
 
-    Expand snippet
-
-    Method 3
-
-    You can note down the project_id, client_email and private_key from the JSON, use them in your code for authentication explicitly.
-
+```
+  
