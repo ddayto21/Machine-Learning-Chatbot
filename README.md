@@ -1,5 +1,8 @@
-## DialogFlow - Node.JS Backend
+## DialogFlow Agent - Webhook Fulfillment Service 
 ![chatbot](images/dialogflow-icon.png)
+
+## Overview
+Setting up a webhook fulfillment service for a Dialogflow agent is an effective way to provide your customers with a better user experience, especially if your chatbot has an incredibly large number of intents. This repository was created to provide developers with more control over the way their Dialogflow agents behave and manage intents when dealing with various situations, such as booking appointments, rescheduling events, and remembering the name of customers that have previously interacted with the chatbot.
 
 ### Instructions
 * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
@@ -14,7 +17,10 @@
 1.  [Enable the Dialogflow API][https://console.cloud.google.com/marketplace/product/google/dialogflow.googleapis.com]
 1.  [Set up authentication with a service account][https://cloud.google.com/docs/authentication/getting-started] 
 
-## Fulfillment Webhook 
+## NodeJS Fulfillment Service  
+Node.js is an open-source, Server side platform & cross runtime environment platform which allows you to build backend and front-end applications using JavaScript.
+
+
 - URL: https://552d-2620-df-8000-5701-0-2-1d46-9f26.ngrok.io/webhook
 - This backend service receives POST requests from the client application in the form of the response to a user query matched by intents with webhook enabled. 
 - Ensure that your web service meets all the webhook requirements specific to the API version enabled in this agent. 
@@ -27,6 +33,14 @@ const express = require('express')
 const app = express()
 
 ```
+
+### Navigate to root directory and install the following packages:
+
+```
+$ npm install express
+```
+ 
+
 
 ### Run Backend Application on Local Host:
 
