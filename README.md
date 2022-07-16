@@ -18,7 +18,7 @@ Setting up a webhook fulfillment service for a Dialogflow agent is an effective 
 * [Authentication - Service Accounts](https://cloud.google.com/docs/authentication/getting-started)
 
 ## NodeJS Set Up
-Node.js is an open-source, server-side runtime environment that allows you to create backend applications by writing JavaScript code. 
+Node.js is an open-source, server-side runtime environment that allows you to create backend applications by writing JavaScript code. This repository uses Node to connect to 3rd party services such as Google Maps API, Google Sheets, Google Calendar, and Twilio in order to provide our Dialogflow agent the ability to schedule appointments on a corporate webiste for one of our clients.  
 
 ### Set up an Express Server using Node.JS
 
