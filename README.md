@@ -1,4 +1,5 @@
 ## DialogFlow - Node.JS Backend
+![chatbot](/dialogflow-chatbot/images)
 
 **Table of Contents:**
 
@@ -6,6 +7,11 @@
   * [Requirements](#requirements)
   * [Fulfillment Service](#fulfillment-service)
   * [Redis Server](#redis-server)
+
+
+  * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
+  * Fulfillment > Enable the Inline EditorA.
+    Select Deploy
 
 
 ### Requirements
@@ -20,13 +26,22 @@
 - This backend service receives POST requests from the client application in the form of the response to a user query matched by intents with webhook enabled. 
 - Ensure that your web service meets all the webhook requirements specific to the API version enabled in this agent. 
 
-### Run Backend Application on Local Host
+### Set up an Express Server using Node.JS
+
+```javascript
+
+const express = require('express')
+const app = express()
+
+```
+
+### Run Backend Application on Local Host:
 
 ```
 $ node service.js
 ```
 
-### Use ngrok to set up a public endpoint
+### Set up a Public URL with NGROK Tunnel:
 
 ```
 $ ngrok http <port>
@@ -40,7 +55,7 @@ $ ngrok http <port>
 
 ```javascript
 
-app.post('/webhook', async(request, response) => {
+    app.post('/webhook', async(request, response) => {
 
 ```
 
@@ -59,11 +74,11 @@ app.post('/webhook', async(request, response) => {
 
 ```javascript 
 
-const dialogflow = require('dialogflow');
- const sessionClient = new dialogflow.SessionsClient({
-  projectId,
-  credentials,
-});
+    const dialogflow = require('dialogflow');
+    const sessionClient = new dialogflow.SessionsClient({
+      projectId,
+      credentials,
+    });
 
 ```
 
@@ -75,8 +90,8 @@ Define Project ID and Session ID in Application
 
 ```javascript
 
-const projectId = '<project-id-here>';
-const sessionId = '<put-chat-session-id-here>';
+    const projectId = '<project-id-here>';
+    const sessionId = '<put-chat-session-id-here>';
 
 ```
 
@@ -95,7 +110,7 @@ $ npm install node_redis
 ```
 
 ## Connect to Redis Instance
-- The following code creates a connection to Redis:
+- Run the following code in your service.js backend file to create a Redis Instance:
 
 ```javascript
 
@@ -150,10 +165,8 @@ $ src/redis-server
 First you have to create a service account and download a .JSON format file of credentials on your local system. Now, there are three ways to use that credentials for authentication/authorisation in dialogflow library.
 
 ### Method 1
-- Create a environment variable GOOGLE_APPLICATION_CREDENTIALS and it's value should be the absolute path of that JSON credentials file.
-- By this method, google library will implicitly loads the file and use that credentials for authentication. We don't need to do anything inside our code relating to this credentials file.
-
-# For UNIX/LINUX Operating Systems:
+- Create an environment variable named 'GOOGLE_APPLICATION_CREDENTIALS'
+- Set the value equal to the absolute path of that JSON credentials file.
 
 ```
 $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
