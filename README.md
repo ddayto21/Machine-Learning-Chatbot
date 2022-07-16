@@ -7,7 +7,7 @@ STEP 1: RUN SERVICE.JS ON LOCAL HOST
 >>> node service.js
 
 STEP 2: USE NGROK TO CREATE A PUBLIC ENDPOINT
->>> ngrok http <port>
+>>> ngrok http [port]
 
 STEP 3: COPY THE ENDPOINT (FORWARDING LINK) FROM TERMINAL 
 - For this particular service, the public endpoint was: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io
