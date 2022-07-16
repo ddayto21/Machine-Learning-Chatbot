@@ -3,23 +3,17 @@
 
 **Table of Contents:**
 
-* [Quickstart](#quickstart)
-  * [Requirements](#requirements)
+* [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
+  * [Requirements](###requirements)
   * [Fulfillment Service](#fulfillment-service)
   * [Redis Server](#redis-server)
 
 
-  * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
-  * Fulfillment > Enable the Inline EditorA.
-    Select Deploy
-
-
 ### Requirements
-1.  [Select or create a Cloud Platform project][projects].
-1.  [Enable billing for your project][billing].
-1.  [Enable the Dialogflow API API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
-    API from your local workstation.
+1.  [Select or create a Cloud Platform project][https://console.cloud.google.com/cloud-resource-manager]
+1.  [Enable billing for your project][https://cloud.google.com/billing/docs/how-to/modify-project]
+1.  [Enable the Dialogflow API][https://console.cloud.google.com/marketplace/product/google/dialogflow.googleapis.com]
+1.  [Set up authentication with a service account][https://cloud.google.com/docs/authentication/getting-started] 
 
 ## Fulfillment Webhook 
 - URL: https://552d-2620-df-8000-5701-0-2-1d46-9f26.ngrok.io/webhook
@@ -61,7 +55,9 @@ $ ngrok http <port>
 
 - Example: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io/webhook
 
-## Set up Webhook URL in Dialogflow Agent
+## Enter Webhook URL in Dialogflow Agent Console:
+
+![Fulfillment-Service](images/Fulfillment-Screenshot.png)
 
 - Navigate to https://dialogflow.cloud.google.com
 - On the left side of the page, click the 'Fulfillment' tab
