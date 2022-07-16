@@ -4,11 +4,11 @@
 ## Overview of Backend Service
 Setting up a webhook fulfillment service for a Dialogflow agent is an effective way to provide your customers with a better user experience, especially if your chatbot has an incredibly large number of intents. This repository was created to provide developers with more control over the way their Dialogflow agents behave and manage intents when dealing with various situations, such as booking appointments, rescheduling events, and remembering the name of customers that have previously interacted with the chatbot.
 
-### Instructions
+## Instructions
 * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
-  * [Requirements](###requirements)
-  * [Fulfillment Service](#fulfillment-service)
-  * [Redis Server](#redis-server)
+* [Requirements](###requirements)
+* [Fulfillment Service](#fulfillment-service)
+* [Redis Server](#redis-server)
 
 
 ### Requirements
