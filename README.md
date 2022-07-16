@@ -15,7 +15,7 @@
 1.  [Set up authentication with a service account][auth] so you can access the
     API from your local workstation.
 
-## BACKEND SERVICE 
+## Fulfillment Webhook 
 - URL: https://552d-2620-df-8000-5701-0-2-1d46-9f26.ngrok.io/webhook
 - This backend service receives POST requests from the client application in the form of the response to a user query matched by intents with webhook enabled. 
 - Ensure that your web service meets all the webhook requirements specific to the API version enabled in this agent. 
