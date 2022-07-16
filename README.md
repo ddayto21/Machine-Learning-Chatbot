@@ -226,14 +226,14 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
 
 ```
 
-# 'Welcome' Intent
+## Intent - Welcome Customer
+- Use Redis client to get information about the customer from the session cache, such as their first and last name, in order to personalize the interaction between the chatbot and the user.
 
 ```javascript
  
     if (action == "input.welcome") {
         const client = new Redis()
         const sessData = await client.hgetall(session_id)
-        // console.log(sess)
         if (sessData.FirstName && sessData.LastName) {           
                 var agentResponse = {
                     "fulfillmentText": `Hey, what's up ${sessData.FirstName}! What could I help you with today?`
