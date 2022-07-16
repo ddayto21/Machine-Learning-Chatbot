@@ -1,19 +1,14 @@
-# [Dialogflow - Fulfillment Service: Node.js Backend](https://dialogflow.cloud.google.com)
+# [Dialogflow Backend: Node.js Backend](https://dialogflow.cloud.google.com)
 
 **Table of Contents:**
 
 * [Quickstart](#quickstart)
-  * [Before you begin](#before-you-begin)
-  * [Installing the client library](#installing-the-client-library)
-  * [Using the client library](#using-the-client-library)
-* [Samples](#samples)
-* [Versioning](#versioning)
-* [Contributing](#contributing)
-* [License](#license)
+  * [Requirements](#requirements)
+  * [Fulfillment Service](#fulfillment-service)
+  * [Redis Server](#redis-server)
 
 
-### Before you begin
-
+### Requirements
 1.  [Select or create a Cloud Platform project][projects].
 1.  [Enable billing for your project][billing].
 1.  [Enable the Dialogflow API API][enable_api].
@@ -46,17 +41,19 @@
   - You can define when you want to send webhooks to this public endpoint in the DialogFlow console
 
 ## Create a Dialogflow Client
-- const dialogflow = require('dialogflow');
-- const sessionClient = new dialogflow.SessionsClient({
+```javascript const dialogflow = require('dialogflow');
+ const sessionClient = new dialogflow.SessionsClient({
   projectId,
   credentials,
 });
+```
 
 ## Project ID
 - You can find your project ID in your Dialogflow agent settings
+```javascript
 const projectId = '<project-id-here>';
 const sessionId = '<put-chat-session-id-here>';
-
+```
 
 
 ## REDIS CACHE (Node.JS)
@@ -64,12 +61,14 @@ https://docs.redis.com/latest/rs/references/client_references/client_nodejs/
 - To use Redis with Node.js, you need to install a Node.js Redis client. The following sections explain how to use node_redis, a community-recommended Redis client for Node.js.
 - Another community-recommended client for Node.js developers is ioredis. You can find additional Node.js clients for Redis in the Node.js section of the Redis Clients page.
 
-# STEP 1: Install node_redis 
+### Install node_redis 
 >>> npm install node_redis
 
-# Step 2: Connect to Redis Instance
+### Connect to Redis Instance
 - The following code creates a connection to Redis:
+```javascript
 const redis = require('redis');
+```
 
 # Step 3: Create a new Redis Client
 const client = redis.createClient({
@@ -83,7 +82,7 @@ const client = redis.createClient({
 client.on('error', err => {
     console.log('Error ' + err);
 });
-
+```
 https://www.sitepoint.com/using-redis-node-js/
 
 # Step 4: Install Redis Server:
