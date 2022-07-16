@@ -1,7 +1,7 @@
 ## DialogFlow Agent - Webhook Fulfillment Service 
 ![chatbot](images/dialogflow-icon.png)
 
-## Overview
+## Overview of Backend Service
 Setting up a webhook fulfillment service for a Dialogflow agent is an effective way to provide your customers with a better user experience, especially if your chatbot has an incredibly large number of intents. This repository was created to provide developers with more control over the way their Dialogflow agents behave and manage intents when dealing with various situations, such as booking appointments, rescheduling events, and remembering the name of customers that have previously interacted with the chatbot.
 
 ### Instructions
@@ -205,9 +205,30 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
 
 ```
 
+## Customer Onboarding
+
+### Save the First and Last Name of Customer in Redis Cache
+
+```javascript
+
+    var FirstName = await parameters["first-name"]
+    var LastName = await parameters["last-name"]
+    try {
+      const client = new Redis()
+      const hashMap = {
+          "FirstName": FirstName,
+          "LastName": LastName
+      }
+      await client.hmset(session_id, hashMap)
+      const sessData = await client.hgetall(session_id)
+    } catch(err) {
+  }
+
+```
+
 ## Creating Appointments 
 
-### Using Google Maps API to calculate the distance between two points 
+### Calculate Distance Between Two Locations Using Google Maps API:
 - This feature maps the distance between a customer pickup location and a corporate business address in order to check whether the pickup distance falls within the range of 100 miles
 
 ```javascript
@@ -270,6 +291,39 @@ if (context_name == session_path + '/contexts/' + 'appointment-booking-create') 
 
 ```
 
+### Validating a customer's phone number:
+- This feature uses regex to validate the phone number that a customer provided to the Dialogflow agent
+
+```javascript
+  if (action == "appointment-booking-getphone") {
+        const Phone = parameters["phone-number"]
+        
+        if (Phone.replace(/\D/g,'').length !== 10) {
+            var jsonResponse = {
+                "fulfillmentText": "Sorry, it looks like that phone number is invalid, could you tell me the full phone number, please?"
+                }
+                response.json(jsonResponse)
+            
+        } else {
+            var jsonResponse = {
+                "fulfillmentText": "Thanks! And the address of the location for the pick-up?"
+                }
+        try {         
+            const client = new Redis()
+            const hashData = { "Phone": Phone }
+            await client.hmset(session_id, hashData)
+            const sessData = await client.hgetall(session_id)
+            redis_client.set("Phone", Phone, function(err, response) {
+                if(err) {
+                    console.log(err)
+                }
+            })
+            } catch(err) {
+                console.log("Error:", err)
+            }      
+        }
+    }
+```
 
 
 
