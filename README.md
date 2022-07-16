@@ -1,8 +1,7 @@
 ## DialogFlow - Node.JS Backend
 ![chatbot](images/dialogflow-icon.png)
 
-**Table of Contents:**
-
+### Instructions
 * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
   * [Requirements](###requirements)
   * [Fulfillment Service](#fulfillment-service)
