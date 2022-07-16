@@ -1,7 +1,7 @@
 ## DialogFlow Agent - Webhook Fulfillment Service 
 ![chatbot](images/dialogflow-icon.png)
 
-## Overview of Backend Service
+## Project Overview
 Setting up a webhook fulfillment service for a Dialogflow agent is an effective way to provide your customers with a better user experience, especially if your chatbot has an incredibly large number of intents. This repository was created to provide developers with more control over the way their Dialogflow agents behave and manage intents when dealing with various situations, such as booking appointments, rescheduling events, and remembering the name of customers that have previously interacted with the chatbot.
 
 ## Instructions
@@ -11,13 +11,13 @@ Setting up a webhook fulfillment service for a Dialogflow agent is an effective 
 * [Redis Server](#redis-server)
 
 
-### Requirements
-1.  [Select or create a Cloud Platform project][https://console.cloud.google.com/cloud-resource-manager]
-1.  [Enable billing for your project][https://cloud.google.com/billing/docs/how-to/modify-project]
-1.  [Enable the Dialogflow API][https://console.cloud.google.com/marketplace/product/google/dialogflow.googleapis.com]
-1.  [Set up authentication with a service account][https://cloud.google.com/docs/authentication/getting-started] 
+## Requirements
+* [Create a Cloud Platform project][https://console.cloud.google.com/cloud-resource-manager]
+* [Enable billing for your project][https://cloud.google.com/billing/docs/how-to/modify-project]
+* [Enable the Dialogflow API][https://console.cloud.google.com/marketplace/product/google/dialogflow.googleapis.com]
+* [Set up authentication with a service account][https://cloud.google.com/docs/authentication/getting-started] 
 
-## NodeJS Fulfillment Service  
+## Webhook Fulfillment Service
 Node.js is an open-source, Server side platform & cross runtime environment platform which allows you to build backend and front-end applications using JavaScript.
 
 
