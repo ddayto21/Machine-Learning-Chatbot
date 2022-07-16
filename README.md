@@ -23,17 +23,13 @@
 ### Run Backend Application on Local Host
 
 ```
-
 $ node service.js
-
 ```
 
 ### Use ngrok to set up a public endpoint
 
 ```
-
 $ ngrok http <port>
-
 ```
  
 ## Copy forwarding link from ngrok 
@@ -93,10 +89,9 @@ https://docs.redis.com/latest/rs/references/client_references/client_nodejs/
 - Another community-recommended client for Node.js developers is ioredis. You can find additional Node.js clients for Redis in the Node.js section of the Redis Clients page.
 
 ### Install node_redis 
+
 ```
-
 $ npm install node_redis
-
 ```
 
 ## Connect to Redis Instance
@@ -130,24 +125,26 @@ https://www.sitepoint.com/using-redis-node-js/
 
 ## Install Redis Server:
 - For Mac and Linux users, the Redis installation is pretty straightforward. Open your terminal and type the following commands:
->>> wget https://download.redis.io/releases/redis-6.2.4.tar.gz
->>> tar xzf redis-6.2.4.tar.gz
->>> cd redis-6.2.4
->>> make
-
-After the installation ends, start the server with this command:
->>> redis-server
-
-If the previous command did not work, try the following command:
->>> src/redis-server 
 
 
-There are 3 sub-agents that make up the entire mega agent
-# (1) Appointment Agent (gordon-ramsey)
+```
+$ wget https://download.redis.io/releases/redis-6.2.4.tar.gz
+$ tar xzf redis-6.2.4.tar.gz
+$ cd redis-6.2.4
+$ make
+```
 
-# (2) Knowledge Base (Question-Answer Pairs)
+## After the installation ends, start the server with this command:
 
-# (3) Personality Agent
+```
+$ redis-server
+```
+
+## If the previous command did not work, try the following command:
+
+```
+$ src/redis-server 
+```
 
 ## Service Account Authentication
 First you have to create a service account and download a .JSON format file of credentials on your local system. Now, there are three ways to use that credentials for authentication/authorisation in dialogflow library.
