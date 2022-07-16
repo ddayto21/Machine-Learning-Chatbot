@@ -4,20 +4,20 @@
 ## Project Overview
 Setting up a webhook fulfillment service for a Dialogflow agent is an effective way to provide your customers with a better user experience, especially if your chatbot has an incredibly large number of intents. This repository was created to provide developers with more control over the way their Dialogflow agents behave and manage intents when dealing with various situations, such as booking appointments, rescheduling events, and remembering the name of customers that have previously interacted with the chatbot.
 
-## Instructions
+## Prerequisites
 * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
-* [Requirements](###requirements)
-* [Fulfillment Service](#fulfillment-service)
-* [Redis Server](#redis-server)
+* [Google Cloud Setup](https://cloud.google.com/dialogflow/es/docs/quick/setup)
+* [Set up Node.JS](https://www.pluralsight.com/guides/getting-started-with-nodejs)
+* [Redis Server - Managing Sessions](https://www.sitepoint.com/using-redis-node-js/)
 
 
-## Requirements
-* [Create a Cloud Platform project][https://console.cloud.google.com/cloud-resource-manager]
-* [Enable billing for your project][https://cloud.google.com/billing/docs/how-to/modify-project]
-* [Enable the Dialogflow API][https://console.cloud.google.com/marketplace/product/google/dialogflow.googleapis.com]
-* [Set up authentication with a service account][https://cloud.google.com/docs/authentication/getting-started] 
+## Google Cloud Platform Setup
+* [Create a Cloud Platform project](https://console.cloud.google.com/cloud-resource-manager)
+* [Enable Project Billing](https://cloud.google.com/billing/docs/how-to/modify-project)
+* [Enable the Dialogflow API](https://console.cloud.google.com/marketplace/product/google/dialogflow.googleapis.com)
+* [Authentication - Service Accounts](https://cloud.google.com/docs/authentication/getting-started)
 
-## Webhook Fulfillment Service
+## NodeJS Set Up
 Node.js is an open-source, server-side runtime environment that allows you to create backend applications by writing JavaScript code. 
 
 ### Set up an Express Server using Node.JS
