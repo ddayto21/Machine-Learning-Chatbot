@@ -226,7 +226,26 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
 
 ```
 
-## Intent - Welcome Customer
+### Save the First and Last Name of Customer in Session Cache
+
+```javascript
+
+    var FirstName = await parameters["first-name"]
+    var LastName = await parameters["last-name"]
+    try {
+      const client = new Redis()
+      const hashMap = {
+          "FirstName": FirstName,
+          "LastName": LastName
+      }
+      await client.hmset(session_id, hashMap)
+      const sessData = await client.hgetall(session_id)
+    } catch(err) {
+  }
+
+```
+
+## Use Session Cache to Get Information about Customer
 - Use Redis client to get information about the customer from the session cache, such as their first and last name, in order to personalize the interaction between the chatbot and the user.
 
 ```javascript
@@ -247,24 +266,7 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
 
 
 
-### Save the First and Last Name of Customer in Redis Cache
 
-```javascript
-
-    var FirstName = await parameters["first-name"]
-    var LastName = await parameters["last-name"]
-    try {
-      const client = new Redis()
-      const hashMap = {
-          "FirstName": FirstName,
-          "LastName": LastName
-      }
-      await client.hmset(session_id, hashMap)
-      const sessData = await client.hgetall(session_id)
-    } catch(err) {
-  }
-
-```
 
 ## Creating Appointments 
 
