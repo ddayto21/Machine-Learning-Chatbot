@@ -18,12 +18,7 @@ Setting up a webhook fulfillment service for a Dialogflow agent is an effective 
 * [Set up authentication with a service account][https://cloud.google.com/docs/authentication/getting-started] 
 
 ## Webhook Fulfillment Service
-Node.js is an open-source, Server side platform & cross runtime environment platform which allows you to build backend and front-end applications using JavaScript.
-
-
-- URL: https://552d-2620-df-8000-5701-0-2-1d46-9f26.ngrok.io/webhook
-- This backend service receives POST requests from the client application in the form of the response to a user query matched by intents with webhook enabled. 
-- Ensure that your web service meets all the webhook requirements specific to the API version enabled in this agent. 
+Node.js is an open-source, server-side runtime environment that allows you to create backend applications by writing JavaScript code. 
 
 ### Set up an Express Server using Node.JS
 
@@ -41,7 +36,6 @@ $ npm install express
 ```
  
 
-
 ### Run Backend Application on Local Host:
 
 ```
@@ -56,7 +50,7 @@ $ ngrok http <port>
  
 ## Copy forwarding link from ngrok 
 
-- For this particular service, the public endpoint was: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io
+- For this particular service, the public endpoint is: https://d81c-2601-1c2-8100-6540-5ddd-a1c3-a27f-aeaf.ngrok.io
 
 ## Add '/webhook' to the end of your public endpoint
 
@@ -205,7 +199,53 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
 
 ```
 
+
 ## Customer Onboarding
+- The body of the request contains relevant information such as the user query, action, and parameters from the client-side.
+
+```javascript
+    
+    const query = request.body.queryResult    
+    const intent = request.body.queryResult.intent.displayName;
+    const score = request.body.queryResult.intentDetectionConfidence;
+    const fulfillmentText = request.body.queryResult.fulfillmentText;
+    const session_path = request.body.session;
+    const parameters = request.body.queryResult.parameters
+    const action = request.body.queryResult.action;
+       
+
+```
+
+## Extracting the Sesssion ID from Request:
+
+```javascript
+
+    const session_path = request.body.session;
+    const session_array = session_path.split('/')
+    const session_id = session_array[session_array.length -1]
+
+```
+
+# 'Welcome' Intent
+
+```javascript
+ 
+    if (action == "input.welcome") {
+        const client = new Redis()
+        const sessData = await client.hgetall(session_id)
+        // console.log(sess)
+        if (sessData.FirstName && sessData.LastName) {           
+                var agentResponse = {
+                    "fulfillmentText": `Hey, what's up ${sessData.FirstName}! What could I help you with today?`
+                }
+                response.json(agentResponse)            
+        }    
+    }
+
+```
+
+
+
 
 ### Save the First and Last Name of Customer in Redis Cache
 
@@ -228,7 +268,7 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="<absolute-path-of-json-file>"
 
 ## Creating Appointments 
 
-### Calculate Distance Between Two Locations Using Google Maps API:
+### Using Google Maps API:
 - This feature maps the distance between a customer pickup location and a corporate business address in order to check whether the pickup distance falls within the range of 100 miles
 
 ```javascript
