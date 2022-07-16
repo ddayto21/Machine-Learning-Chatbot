@@ -106,21 +106,15 @@ First you have to create a service account and download a .JSON format file of c
 
     You can note down the project_id, client_email and private_key from the JSON, use them in your code for authentication explicitly.
 
-// You can find your project ID in your Dialogflow agent settings
+Project ID
+- You can find your project ID in your Dialogflow agent settings
 const projectId = '<project-id-here>';
 const sessionId = '<put-chat-session-id-here>';
-// const sessionid = 'fa2d5904-a751-40e0-a878-d622fa8d65d9'
-const query = 'hi';
-const languageCode = 'en-US';
-const credentials = {
-  client_email: '<client-email-here>',
-  private_key:
-    '<private-key-here>',
-};
-// Instantiate a DialogFlow client.
-const dialogflow = require('dialogflow');
 
-const sessionClient = new dialogflow.SessionsClient({
+
+Create a Dialogflow Client
+- const dialogflow = require('dialogflow');
+- const sessionClient = new dialogflow.SessionsClient({
   projectId,
   credentials,
 });
