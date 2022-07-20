@@ -1,8 +1,8 @@
-## DialogFlow Machine Learning Chatbot - Webhook Fulfillment Service 
+## DialogFlow Machine Learning Chatbot 
 ![chatbot](images/dialogflow-icon.png)
 
 ## Project Overview
-Setting up a webhook fulfillment service for a Dialogflow agent is an effective way to provide your customers with a better user experience, especially if your chatbot has an incredibly large number of intents. This repository was created to provide developers with more control over the way their Dialogflow agents behave and manage intents when dealing with various situations, such as booking appointments, rescheduling events, and remembering the name of customers that have previously interacted with the chatbot.
+This repository contains a backend service for an intelligent chatbot that onboards clients, answers questions, and sets up appointments on a retail website. The purpose of the backend service is to improve the customer experience that users have when interacting with a Dialogflow chatbot.
 
 ## Prerequisites
 * [Create Dialogflow Agent](https://dialogflow.cloud.google.com/#/agent/)
